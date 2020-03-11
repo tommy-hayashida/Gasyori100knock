@@ -90,8 +90,8 @@ def Canny_step1(img):
 		out_v = np.clip(out_v, 0, 255)
 		out_h = np.clip(out_h, 0, 255)
 
-		out_v = out_v[pad : pad + H, pad : pad + W].astype(np.uint8)
-		out_h = out_h[pad : pad + H, pad : pad + W].astype(np.uint8)
+		out_v = out_v[pad : pad + H, pad : pad + W]
+		out_h = out_h[pad : pad + H, pad : pad + W]
 
 		return out_v, out_h
 
