@@ -88,9 +88,9 @@ def Dilate(img, Dil_time=1):
 
 # Opening morphology
 def Morphology_Opening(img, time=1):
-    dil = Dilate(img, Dil_time=time)
-    erode = Erode(dil, Erode_time=time)
-    return erode
+    erode = Erode(img, Erode_time=time)
+    dil = Dilate(erode, Dil_time=time)
+    return dil
 
 # Read image
 img = cv2.imread("imori.jpg").astype(np.float32)
@@ -105,7 +105,7 @@ otsu = otsu_binarization(gray)
 opened = Morphology_Opening(otsu, time=3)
 
 # Tophat
-out = np.abs(otsu - opened) * 255
+out = np.abs(otsu - opened)
                 
 # Save result
 cv2.imwrite("out.jpg", out)
