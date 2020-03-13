@@ -89,8 +89,8 @@ def Dilate(img, Dil_time=1):
 
 # Closing morphology
 def Morphology_Closing(img, time=1):
-    erode = Erode(img, Erode_time=time)
-    dil = Dilate(erode, Dil_time=time)
+    dil = Dilate(img, Dil_time=time)
+    erode = Erode(dil, Erode_time=time)
     return erode
 
 
@@ -104,12 +104,12 @@ gray = BGR2GRAY(img)
 # Otsu's binarization
 otsu = otsu_binarization(gray)
 
-# Opening process
-opened = Morphology_Closing(otsu, time=3)
+# closing process
+closed = Morphology_Closing(otsu, time=3)
 
 # Tophat
-out = np.abs(opened - otsu) * 255
-                
+out = np.abs(closed - otsu)
+
 # Save result
 cv2.imwrite("out.jpg", out)
 cv2.imshow("result", out)
