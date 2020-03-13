@@ -105,10 +105,10 @@ gray = BGR2GRAY(img)
 otsu = otsu_binarization(gray)
 
 # Opening process
-opened = Morphology_Closing(otsu, time=3)
+closed = Morphology_Closing(otsu, time=3)
 
 # Tophat
-out = np.abs(opened - otsu) * 255
+out = np.abs(closed - otsu) * 255
                 
 # Save result
 cv2.imwrite("out.jpg", out)
